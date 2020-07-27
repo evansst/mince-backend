@@ -19,6 +19,8 @@ require 'byebug'
 # ingredient_array = %w[apple orange basil spinach avocado] done
 # ingredient_array = %w[rice butter cheese onion corn] done
 # ingredient_array = %w[lamb shrimp bacon coconut beets] done
+# ingredient_array = %w[pasta sphaghetti ravioli linguini penne] done
+ingredient_array = %w[steak burger sandwhich]
 
 
 ingredient_array.each do |ingredient|
