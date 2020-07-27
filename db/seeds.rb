@@ -20,15 +20,18 @@ require 'byebug'
 # ingredient_array = %w[rice butter cheese onion corn] done
 # ingredient_array = %w[lamb shrimp bacon coconut beets] done
 # ingredient_array = %w[pasta sphaghetti ravioli linguini penne] done
-ingredient_array = %w[steak burger sandwhich]
+# ingredient_array = %w[steak burger sandwhich] done
+ingredient_array = %w[noodles chicken beef broccoli soy]
+
+cuisine_type = ''
 
 
 ingredient_array.each do |ingredient|
-
   base_url = "https://api.edamam.com/search?q=#{ingredient}&app_id=0bc71582&app_key=28c7d1686792de154523a2e314dc54c3&from=0&to=100"
+  base_url = "https://api.edamam.com/search?q=#{ingredient}&cuisine_type=#{cuisine_type}&app_id=0bc71582&app_key=28c7d1686792de154523a2e314dc54c3&from=0&to=100" if cuisine_type 
+
   data = RestClient.get(base_url)
-  full_data = JSON.parse(data)
-  recipe_data = full_data['hits']
+  recipe_data = JSON.parse(data)['hits']
 
   recipe_data.each do |recipe|
     Recipe.find_or_create_by(name: recipe['recipe']['label']) do |our_recipe|
