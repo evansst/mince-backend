@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = if params['name']
+                Recipe.where(name: params['name'])
+              else
+                Recipe.all.sample(10)
+              end
 
     render json: @recipes
   end
