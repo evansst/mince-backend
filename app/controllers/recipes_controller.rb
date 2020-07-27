@@ -1,14 +1,13 @@
 class RecipesController < ApplicationController
-    def index
-        if params["name"]
-            @recipes = Recipe.where(name: params["name"])
-            render json: @recipes
-        else
-            @recipes = Recipes.all
-            render json: @recipes
-        end
-    end 
-  
+  def index
+    @recipes = if params['name']
+                Recipe.where(name: params['name'])
+              else
+                Recipe.all.sample(10)
+              end
+
+    render json: @recipes
+  end
 
   def show
     @recipe = Recipe.find(index[:id])
