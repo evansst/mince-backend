@@ -14,9 +14,12 @@ require 'byebug'
 
 
 # ingredient_array = %w[bread flour sugar milk eggs] done
-ingredient_array = %w[beef chicken pork turkey fish]
-# ingredient_array = %w[potatoes onions garlic tomatoes shallots]
-# ingredient_array = %w[apple orange basil spinach avocado]
+# ingredient_array = %w[beef chicken pork turkey fish] done
+# ingredient_array = %w[potatoes onions garlic tomatoes shallots] done
+# ingredient_array = %w[apple orange basil spinach avocado] done
+# ingredient_array = %w[rice butter cheese onion corn] done
+# ingredient_array = %w[lamb shrimp bacon coconut beets] done
+
 
 ingredient_array.each do |ingredient|
 
