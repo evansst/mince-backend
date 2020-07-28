@@ -46,3 +46,5 @@ gem 'rest-client'
 #scheduler-rufus
 gem 'rufus-scheduler'
 
+# faker for user seeds
+gem 'faker'
