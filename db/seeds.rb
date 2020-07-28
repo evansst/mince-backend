@@ -6,32 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 require 'rest-client'
 require 'json'
 require 'byebug'
 
+Recipe.destroy_all
 
+# Add as many terms as you like to this array, and it should still work.  Just add a word without any commas
+search_array = %w[bread flour sugar milk eggs beef chicken pork turkey fish potatoes onions garlic tomatoes shallots
+                  apple orange basil spinach avocado rice butter cheese onion corn lamb shrimp bacon coconut beets
+                  pasta sphaghetti ravioli linguini penne steak burger sandwhich noodles chicken beef broccoli soy
+                  breakfast lunch dinner]
 
-# ingredient_array = %w[bread flour sugar milk eggs] done
-# ingredient_array = %w[beef chicken pork turkey fish] done
-# ingredient_array = %w[potatoes onions garlic tomatoes shallots] done
-# ingredient_array = %w[apple orange basil spinach avocado] done
-# ingredient_array = %w[rice butter cheese onion corn] done
-# ingredient_array = %w[lamb shrimp bacon coconut beets] done
-# ingredient_array = %w[pasta sphaghetti ravioli linguini penne] done
-# ingredient_array = %w[steak burger sandwhich] done
-# ingredient_array = %w[noodles chicken beef broccoli soy] done
+counter = 1
 
-cuisine_type = ''
+search_array.each do |search_term|
+  base_url1 = "https://api.edamam.com/search?q=#{search_term}&app_id=0bc71582&app_key=28c7d1686792de154523a2e314dc54c3&from=0&to=100"
+  base_url2 = "https://api.edamam.com/search?q=#{search_term}s&app_id=0ea652a3&app_key=01e1c856909da6cd7fed1505d85975a9&from=0&to=100"
 
+  data1 = RestClient.get(base_url1)
+  data2 = RestClient.get(base_url2)
 
-ingredient_array.each do |ingredient|
-  base_url = "https://api.edamam.com/search?q=#{ingredient}&app_id=0bc71582&app_key=28c7d1686792de154523a2e314dc54c3&from=0&to=100"
-  base_url = "https://api.edamam.com/search?q=#{ingredient}&cuisine_type=#{cuisine_type}&app_id=0bc71582&app_key=28c7d1686792de154523a2e314dc54c3&from=0&to=100" if cuisine_type 
-
-  data = RestClient.get(base_url)
-  recipe_data = JSON.parse(data)['hits']
+  recipe_data = JSON.parse(data1)['hits'] + JSON.parse(data2)['hits']
 
   recipe_data.each do |recipe|
     Recipe.find_or_create_by(name: recipe['recipe']['label']) do |our_recipe|
@@ -40,4 +36,7 @@ ingredient_array.each do |ingredient|
       our_recipe.ingredients = recipe['recipe']['ingredientLines']
     end
   end
+  p "search term #{counter} added to seeds! #{Recipe.all.count} recipes in the DB"
+  counter += 1
+  sleep(13) unless search_term == search_array.last
 end

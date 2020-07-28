@@ -42,3 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # res-client
 gem 'rest-client'
+
+#scheduler-rufus
+gem 'rufus-scheduler'
+
