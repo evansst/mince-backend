@@ -21,7 +21,7 @@ require 'byebug'
 # ingredient_array = %w[lamb shrimp bacon coconut beets] done
 # ingredient_array = %w[pasta sphaghetti ravioli linguini penne] done
 # ingredient_array = %w[steak burger sandwhich] done
-ingredient_array = %w[noodles chicken beef broccoli soy]
+# ingredient_array = %w[noodles chicken beef broccoli soy] done
 
 cuisine_type = ''
 

@@ -1,16 +1,17 @@
 class RecipesController < ApplicationController
   def index
     @recipes = if params['name']
-                Recipe.where(name: params['name'])
+                # Recipe.where(name: params['name'])
+                Recipe.where("name LIKE ?", "%" + params['name'].downcase + "%")
               else
-                Recipe.all.sample(10)
+                Recipe.all.sample(9)
               end
 
     render json: @recipes
   end
 
   def show
-    @recipe = Recipe.find(index[:id])
+    @recipe = Recipe.find(params[:id])
 
     render json: @recipe
   end
