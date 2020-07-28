@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   def index
     @recipes = if params['name']
                  Recipe.where('name LIKE ?', "%#{params['name'].downcase}%")
+               elsif params['recipe_id']
                else
                  Recipe.all.sample(9)
                end

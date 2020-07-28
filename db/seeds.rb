@@ -45,8 +45,14 @@ User.destroy_all
 
 10.times do
   name = Faker::Name.name
-  User.create(
+  user = User.create(
     name: name,
     user_name: Faker::Internet.username(specifier: name, separators: %w[. _ -])
   )
+  3.times do
+    RecipeCard.create(
+      user_id: user.id,
+      recipe_id: Recipe.all.sample.id
+    )
+  end
 end
