@@ -17,7 +17,7 @@ class RecipeCardsController < ApplicationController
       recipe_id: params[:recipe_id]
     )
 
-    redirect_to("http://localhost:3001/user.html?user_id=#{@user.id}")
+    render json: @recipe_card, include: %i[user recipe]
   end
 
   def destroy
