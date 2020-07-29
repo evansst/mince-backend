@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ChecklistTest < ActiveSupport::TestCase
+class ShoppingListTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

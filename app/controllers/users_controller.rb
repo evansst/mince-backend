@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    render json: @user, include: [:recipes]
+    render json: @user, include: %i[recipes shopping_list]
   end
 
   def create

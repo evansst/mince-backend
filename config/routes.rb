@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shopping_lists
   resources :checklists, except: [:update, :show]
   resources :recipe_cards
   resources :users
