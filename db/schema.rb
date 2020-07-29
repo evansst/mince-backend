@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_204228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  
   create_table "recipe_cards", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
