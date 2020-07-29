@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checklists, except: [:update, :show]
   resources :recipe_cards
   resources :users
   resources :recipes, only: %i[index show create]
