@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
   def index
     @recipes = if params['name']
-                 Recipe.where('name LIKE ?', "%#{params['name'].downcase}%")
-               elsif params['recipe_id']
+                 Recipe.where('lower(name) LIKE ?', "%#{params['name'].downcase}%")
+               elsif params['sample']
+                 Recipe.all.sample(params['sample'].to_i)
                else
-                 Recipe.all.sample(9)
+                 Recipe.all
                end
 
     render json: @recipes

@@ -11,10 +11,10 @@
 
 # Recipe.destroy_all
 
-# search_array = %w[bread flour sugar milk eggs beef chicken pork turkey fish potatoes onions garlic tomatoes shallots
-#                   apple orange basil spinach avocado rice butter cheese onion corn lamb shrimp bacon coconut beets
-#                   pasta sphaghetti ravioli linguini penne steak burger sandwhich noodles chicken beef broccoli soy
-#                   breakfast lunch dinner]
+search_array = %w[bread flour sugar milk eggs beef chicken pork turkey fish potatoes onions garlic tomatoes shallots
+                  apple orange basil spinach avocado rice butter cheese onion corn lamb shrimp bacon coconut beets
+                  pasta sphaghetti ravioli linguini penne steak burger sandwhich noodles chicken beef broccoli soy
+                  breakfast lunch dinner]
 
 # counter = 1
 
@@ -42,6 +42,7 @@
 # USER SEEDS
 
 RecipeCard.destroy_all
+ShoppingList.destroy_all
 User.destroy_all
 
 10.times do
@@ -50,13 +51,16 @@ User.destroy_all
     name: name,
     user_name: Faker::Internet.username(specifier: name, separators: %w[. _ -])
   )
-  ShoppingList.create(
-    user_id: user.id
-  )
+  ShoppingList.create(user_id: user.id)
   3.times do
     RecipeCard.create(
       user_id: user.id,
       recipe_id: Recipe.all.sample.id
     )
   end
+
+  user.recipes.each do |recipe|
+    user.shopping_list.ingredients += recipe.ingredients
+  end
+  user.shopping_list.save!
 end
