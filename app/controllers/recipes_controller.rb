@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
     @recipes = if params['name']
-                 Recipe.where('name LIKE ?', "%#{params['name'].downcase}%") 
+                 Recipe.where('lower(name) LIKE ?', "%#{params['name'].downcase}%")
                elsif params['sample']
                  Recipe.all.sample(params['sample'].to_i)
                else
