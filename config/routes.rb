@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :shopping_lists
+  resources :shopping_lists, only: [:index, :create]
   resources :recipe_cards
   resources :users
   resources :recipes, only: %i[index show create]
