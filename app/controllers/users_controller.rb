@@ -29,10 +29,13 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    
-    @user.shopping_list.ingredients << params[:shopping_list]
+
+    if (params[:delete])
+      @user.shopping_list.ingredients.delete(params[:shopping_list])
+    else
+      @user.shopping_list.ingredients << params[:shopping_list]
+    end
     @user.shopping_list.save!
-    
     # redirect_to("http://localhost:3001/user.html?user_id=#{@user.id}")
     render json: @user, include: %i[recipes shopping_list]
   end
