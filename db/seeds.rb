@@ -51,7 +51,9 @@ User.destroy_all
     name: name,
     user_name: Faker::Internet.username(specifier: name, separators: %w[. _ -])
   )
+
   ShoppingList.create(user_id: user.id)
+
   3.times do
     RecipeCard.create(
       user_id: user.id,
