@@ -9,12 +9,11 @@
 # RECIPE SEEDS
 # Add as many terms as you like to this array, and it should still work.  Just add a word without any commas
 
-
 search_array = %w[bread flour sugar milk eggs beef chicken pork turkey fish potatoes onions garlic tomatoes shallots
-  apple orange basil spinach avocado rice butter cheese onion corn lamb shrimp bacon coconut beets
-  pasta sphaghetti ravioli linguini penne steak burger sandwhich noodles chicken beef broccoli soy
-  breakfast lunch dinner]
-  
+                  apple orange basil spinach avocado rice butter cheese onion corn lamb shrimp bacon coconut beets
+                  pasta sphaghetti ravioli linguini penne steak burger sandwhich noodles chicken beef broccoli soy
+                  breakfast lunch dinner]
+
 # Recipe.destroy_all
 # counter = 1
 

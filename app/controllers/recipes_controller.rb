@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
                elsif params['sample']
                  Recipe.all.sample(params['sample'].to_i)
                elsif params['ingredient']
-                 Recipe.where('ANY(ingredients) ILIKE :ingredient', "%#{params['ingredient']}%");
+                 Recipe.where('ANY(ingredients) ILIKE :ingredient', "%#{params['ingredient']}%")
                else
                  Recipe.all
                end
