@@ -17,15 +17,17 @@ class UsersController < ApplicationController
       user_name: params[:username]
     )
     ShoppingList.create(user_id: @user.id)
-    
+
     redirect_to("http://localhost:3001/user.html?user_id=#{@user.id}")
   end
 
   def destroy
     @user = User.find(params[:id])
+    @user.shopping_list.destroy
+    @user.recipe_cards.destroy_all
     @user.destroy
 
-    render json: { message: "User #{@user.username} has been deleted!" }
+    redirect_to('http://localhost:3001')
   end
 
   def update
