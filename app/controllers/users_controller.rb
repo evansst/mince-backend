@@ -14,9 +14,10 @@ class UsersController < ApplicationController
   def create
     @user = User.create(
       name: params[:name],
-      username: params[:username]
+      user_name: params[:username]
     )
-
+    ShoppingList.create(user_id: @user.id)
+    
     redirect_to("http://localhost:3001/user.html?user_id=#{@user.id}")
   end
 
@@ -30,13 +31,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if params[:delete]
-      @user.shopping_list.ingredients.delete(params[:shopping_list])
-    else
-      @user.shopping_list.ingredients << params[:shopping_list]
-    end
-
+    params[:delete] ? @user.shopping_list.ingredients.delete(params[:shopping_list]) : @user.shopping_list.ingredients << params[:shopping_list]
     @user.shopping_list.save!
+
     render json: @user, include: %i[recipes shopping_list]
   end
 end
