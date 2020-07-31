@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     )
     ShoppingList.create(user_id: @user.id)
 
-    redirect_to("http://localhost:3001/user.html?user_id=#{@user.id}")
+    redirect_to("http://localhost:3001/?user_id=#{@user.id}")
   end
 
   def destroy
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user.recipe_cards.destroy_all
     @user.destroy
 
-    redirect_to('http://localhost:3001')
+    redirect_to('http://localhost:3001?user_id=null')
   end
 
   def update
