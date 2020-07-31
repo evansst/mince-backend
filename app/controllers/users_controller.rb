@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       @user.shopping_list.ingredients << params[:shopping_list]
     end
     @user.shopping_list.save!
-    
+
     render json: @user, include: %i[recipes shopping_list]
   end
 end
